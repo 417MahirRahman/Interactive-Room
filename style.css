@@ -1,0 +1,145 @@
+:root{
+  --gold: #f4e8c1;
+  --amber: #ffb454;
+  --cyan: #7ff6ff;
+  --amethyst: #b98bff;
+  --ink: #dfe7ff;
+}
+
+*{ box-sizing:border-box; }
+
+html, body{
+  margin:0; padding:0; width:100%; height:100%;
+  background:#050814;
+  overflow:hidden;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  color:var(--ink);
+  cursor:none; /* the mouse becomes the magic orb — no native pointer */
+}
+
+#scene-canvas{
+  position:fixed; inset:0; display:block; width:100%; height:100%;
+}
+
+/* ================= INTRO ================= */
+#intro{
+  position:fixed; inset:0; z-index:50;
+  display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(circle at 50% 35%, #14203f 0%, #070a18 75%);
+  transition: opacity 1s ease, visibility 1s ease;
+  cursor: default;
+}
+#intro.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+
+.intro-panel{
+  max-width:560px; width:88%;
+  padding:50px 40px;
+  text-align:center;
+  background: linear-gradient(180deg, rgba(20,26,50,0.55), rgba(10,14,28,0.8));
+  border:1px solid rgba(185,139,255,0.35);
+  border-radius:6px;
+  box-shadow: 0 0 60px rgba(127,246,255,0.08), inset 0 0 40px rgba(127,246,255,0.04);
+}
+.intro-panel .eyebrow{
+  font-family: 'Courier New', monospace;
+  letter-spacing:0.35em; font-size:11px; margin:0 0 14px;
+  color: var(--amber);
+}
+.intro-panel h1{
+  font-size:2.5rem; line-height:1.18; margin:0 0 20px; font-weight:600;
+  color:#f8f5ff;
+  text-shadow: 0 0 26px rgba(127,246,255,0.4);
+  letter-spacing:0.02em;
+}
+.intro-panel .sub{ font-size:16px; line-height:1.7; opacity:0.85; margin:0 0 30px; }
+
+#enter-btn, #sound-toggle{
+  font-family:'Courier New', monospace;
+  cursor: pointer;
+}
+#enter-btn{
+  font-size:14px; letter-spacing:0.14em;
+  padding:15px 30px;
+  background: linear-gradient(180deg, #cba6ff, #7c4fd6);
+  border:1px solid #4a2f8a;
+  border-radius:3px;
+  color:#100a24;
+  box-shadow: 0 3px 0 #4a2f8a, 0 8px 20px rgba(124,79,214,0.35);
+  transition: transform 0.15s ease;
+}
+#enter-btn:hover{ transform: translateY(1px); }
+#enter-btn:active{ transform: translateY(3px); box-shadow:0 0 0 #4a2f8a; }
+
+/* ================= HUD ================= */
+#hud{
+  position:fixed; left:20px; bottom:20px; z-index:10;
+  font-family:'Courier New', monospace;
+  font-size:11px; letter-spacing:0.14em;
+  background: rgba(8,12,24,0.45);
+  border:1px solid rgba(185,139,255,0.25);
+  border-radius:4px;
+  padding:10px 14px;
+  backdrop-filter: blur(2px);
+  pointer-events:none;
+}
+.hud-row{ display:flex; gap:10px; justify-content:space-between; }
+.hud-row + .hud-row{ margin-top:4px; }
+.hud-label{ opacity:0.55; }
+#hud-light{ color: var(--cyan); }
+#hud-state{ color: var(--amber); }
+
+/* ================= CONTROLS PANEL ================= */
+#controls-panel{
+  position:fixed; right:18px; top:20px; z-index:10;
+  font-family:'Courier New', monospace;
+  background: rgba(8,12,24,0.5);
+  border:1px solid rgba(185,139,255,0.3);
+  border-radius:4px;
+  padding:12px 14px;
+  backdrop-filter: blur(2px);
+  width:170px;
+  cursor: default;
+}
+.control-row + .control-row{ margin-top:12px; }
+.control-row label{
+  display:flex; justify-content:space-between;
+  font-size:10px; letter-spacing:0.12em;
+  color: var(--ink); opacity:0.85;
+  margin-bottom:6px;
+}
+.control-row label span{ color: var(--cyan); opacity:1; }
+#controls-panel input[type="range"]{
+  -webkit-appearance:none; appearance:none;
+  width:100%; height:3px;
+  background: rgba(185,139,255,0.3);
+  border-radius:2px;
+  cursor:pointer;
+  outline:none;
+}
+#controls-panel input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:13px; height:13px; border-radius:50%;
+  background: var(--cyan);
+  box-shadow: 0 0 6px rgba(127,246,255,0.7);
+  cursor:pointer;
+}
+#controls-panel input[type="range"]::-moz-range-thumb{
+  width:13px; height:13px; border-radius:50%; border:none;
+  background: var(--cyan);
+  box-shadow: 0 0 6px rgba(127,246,255,0.7);
+  cursor:pointer;
+}
+
+#sound-toggle{
+  position:fixed; right:18px; bottom:18px; z-index:10;
+  width:44px; height:44px; border-radius:50%;
+  border:1px solid rgba(185,139,255,0.35);
+  background: rgba(8,12,24,0.5);
+  color:var(--ink);
+  font-size:18px;
+}
+
+@media (max-width: 640px){
+  .intro-panel h1{ font-size:1.8rem; }
+  .intro-panel .sub{ font-size:14px; }
+}
